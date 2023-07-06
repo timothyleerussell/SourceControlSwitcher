@@ -82,8 +82,8 @@ namespace SourceControlSwitcher
 
         //TODO: Is this an internal guid for the Source Control Switcher...?
         //Seems like it must a guid that comes from the SourceGear Vault extension
-        public const string SourceGearVaultSccProviderId = "f258d985-9463-41d3-ac34-531fe5f6e996"; //TODO: made up guid, should it be???
-        //public const string SourceGearVaultSccProviderId = "0da1b151-b5a1-4c82-b97d-bef83adf8958"; //SGPro VaultWitVsip
+        //TODO: made up guid, should it be??? probably not, failing on this now, or are we...?
+        public const string SourceGearVaultSccProviderId = "f258d985-9463-41d3-ac34-531fe5f6e996";
 
         public const string SourceControlSwitcherCollection = "SourceControlSwitcher";
 
