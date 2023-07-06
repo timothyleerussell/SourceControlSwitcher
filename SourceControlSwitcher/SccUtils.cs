@@ -11,6 +11,7 @@ using System.ComponentModel;
 using Microsoft.VisualStudio.Shell;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.VisualStudio.Shell.Interop;
+using System.Security.Principal;
 
 namespace SourceControlSwitcher
 {
@@ -42,9 +43,20 @@ namespace SourceControlSwitcher
 
         //these are placeholder ids at the moment - not sure where to find these package ids
         //some way of interrogating the vsix installer?
+
+        //Vault Standard manifest has these two guids
+        //Identity Id = "VaultSccVsip.bd27fdf0-45c3-4c8d-8fa5-aaf84600543c" Version="10.2.0.1222" Language="en-US" Publisher="SourceGear, LLC"
+        //Dependency Version="[4.3.2.1,)" Location="VaultCxnSvcVsip\VaultCxnSvcVsip.vsix" DisplayName="SourceGear Vault Connection Service" Id="VaultCxnSvcVsip.4c27701c-5c7e-4c72-b316-790f176ceb76"
+
+        //Vault Pro manifest has these two guids
+        //Identity Id="VaultWitVsip.0da1b151-b5a1-4c82-b97d-bef83adf8958" Version="10.2.0.31222" Language="en-US" Publisher="SourceGear, LLC" 
+        //Dependency Version="[4.3.2.1,)" Location="VaultSccVsix\VaultSccVsip.vsix" DisplayName="SourceGear Vault Professional Extension" Id="VaultSccVsip.1cbcff05-f0cd-4b07-ab12-1d986e26c8cf"
+
         public static readonly string[] SourceGearVaultStandardPackageIds = { "03796505-8d85-4d99-8be3-860a7b046406" };
-        public static readonly string[] SourceGearVaultProfessionalPackageIds = { "35a170e4-5ad5-4a8f-8b25-14832fea4b07" };
-        public const string SourceGearVaultSccProviderId = "f258d985-9463-41d3-ac34-531fe5f6e996";
+        //public static readonly string[] SourceGearVaultProfessionalPackageIds = { "35a170e4-5ad5-4a8f-8b25-14832fea4b07" };
+        public static readonly string[] SourceGearVaultProfessionalPackageIds = { "1cbcff05-f0cd-4b07-ab12-1d986e26c8cf" };
+        //public const string SourceGearVaultSccProviderId = "f258d985-9463-41d3-ac34-531fe5f6e996";
+        public const string SourceGearVaultSccProviderId = "0da1b151-b5a1-4c82-b97d-bef83adf8958";
 
         public const string SourceControlSwitcherCollection = "SourceControlSwitcher";
 
