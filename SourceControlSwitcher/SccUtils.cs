@@ -55,8 +55,9 @@ namespace SourceControlSwitcher
         public static readonly string[] SourceGearVaultStandardPackageIds = { "03796505-8d85-4d99-8be3-860a7b046406" };
         //public static readonly string[] SourceGearVaultProfessionalPackageIds = { "35a170e4-5ad5-4a8f-8b25-14832fea4b07" };
         public static readonly string[] SourceGearVaultProfessionalPackageIds = { "1cbcff05-f0cd-4b07-ab12-1d986e26c8cf" };
-        //public const string SourceGearVaultSccProviderId = "f258d985-9463-41d3-ac34-531fe5f6e996";
-        public const string SourceGearVaultSccProviderId = "0da1b151-b5a1-4c82-b97d-bef83adf8958";
+        
+        //Is this an internal guid for the Source Control Switcher...?
+        public const string SourceGearVaultSccProviderId = "f258d985-9463-41d3-ac34-531fe5f6e996";
 
         public const string SourceControlSwitcherCollection = "SourceControlSwitcher";
 
