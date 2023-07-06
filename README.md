@@ -1,4 +1,5 @@
 # Source Control Switcher
+# Forked to add SourceGear Vault support
 
 ![Source Control Switcher Logo](https://www.ryadel.com/wp-content/uploads/2019/10/Source-Control-Switcher-logo-368x200.png)
 
