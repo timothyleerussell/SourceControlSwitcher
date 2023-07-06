@@ -164,7 +164,12 @@ namespace SourceControlSwitcher
 
 
             hr = _VsRegisterScciProvider.RegisterSourceControlProvider(sccProviderGuid);
-            Marshal.ThrowExceptionForHR(hr);
+            
+            //TODO: UNDO: try suppressing this for a bit
+            // Interesting...without this call it seems to work in switching between
+            // SourceGear Vault and Git based on the project settings most of the time
+            //TODO: Research what the reprecussions of Marshal.ThrowEx are...
+            //Marshal.ThrowExceptionForHR(hr);
 
 
             AppHelper.Output(String.Format("Provider {0} registered (providerGuid: {1})", providerToLoad.ToString(), sccProviderGuid.ToString()));
