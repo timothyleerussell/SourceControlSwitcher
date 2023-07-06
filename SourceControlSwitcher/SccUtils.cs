@@ -41,6 +41,18 @@ namespace SourceControlSwitcher
         public static readonly string[] P4VSPackageIds = { "8d316614-311a-48f4-85f7-df7020f62357" };
         public const string P4VSProviderId = "fda934f4-0492-4f67-a6eb-cbe0953649f0";
 
+        //TODO: at this point, just guessing about these ids, no success yet...
+        //Questions: 
+        //
+        //  SccProviderId: What is this id, where does it come from, is it part of SourceControlSwitcher settings and thus
+        //                  just needs to be a unique id?
+        //
+        //  Seems like the other ids need to be the extension guid registered with VS
+        //  but where is this done, how can it be interrogated?
+        //  
+        //  Also, MS docs say this is a guid but the Vault extension the Id value is SOMETHING.guid
+        //  Maybe when you install an extension, this first bit gets stripped off. Don't know yet.
+        //
         //these are placeholder ids at the moment - not sure where to find these package ids
         //some way of interrogating the vsix installer?
         //yes, can unzip the extension installer and read the manifest file
