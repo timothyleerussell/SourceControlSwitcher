@@ -154,8 +154,12 @@ namespace SourceControlSwitcher
 
 
             //TODO: this line fails, probably because the "Id" is incorrect
-            //should be an id from the sourcegear vault extension but are 
-            //currently just randomly generated placeholder guids
+            //should be an id from the sourcegear vault extension?
+            //
+            // How do we interrogate the current extension guids? 
+    z       // Could set the current provider manually and try to extract the registration guid that way?
+            //
+            
             hr = _VsRegisterScciProvider.RegisterSourceControlProvider(sccProviderGuid);
             Marshal.ThrowExceptionForHR(hr);
 
