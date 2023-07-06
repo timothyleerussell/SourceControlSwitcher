@@ -18,6 +18,7 @@ namespace SourceControlSwitcher
         public const string SVN_DIR = ".svn";
         public const string GIT_DIR = ".git";
         public const string MERCURIAL_DIR = ".hg";
+        public const string SOURCEGEAR_VAULT_DIR = "_sgbak";
 
         public int OnAfterCloseSolution(object pUnkReserved)
         {
@@ -197,6 +198,16 @@ namespace SourceControlSwitcher
                     {
                         MainSite.RegisterPrimarySourceControlProvider(RcsType.Subversion);
                         _CurrentSolutionRcsType = RcsType.Subversion;
+                    }
+                    break;
+                }
+
+                if(Directory.Exists(Path.Combine(currdir.FullName, SOURCEGEAR_VAULT_DIR)))
+                {
+                    if(_CurrentSolutionRcsType != RcsType.SourceGearVault)
+                    {
+                        MainSite.RegisterPrimarySourceControlProvider(RcsType.SourceGearVault);
+                        _CurrentSolutionRcsType = RcsType.SourceGearVault;
                     }
                     break;
                 }

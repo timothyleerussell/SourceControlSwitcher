@@ -29,6 +29,7 @@ Supported Source Control Clients (and their provider) are:
  * **VisualHG** *(Mercurial)*
  * **VSHG** *(Mercurial)*
  * **P4VS** *(Helix)*
+ * **SourceGear Vault** *(VSS replacement)*
 
 More providers can be added, provided they are regular source control providers 
 and there exists an easy way to detect
@@ -38,13 +39,13 @@ starting from solution root directory.
 Each provider (Subversion, Git, Mercurial or Helix) can be configured to either load a specific client 
 (among those supported) or to get the first installed one found (Default).
 
-The extension is fully compatible with VS2015, VS2017 and VS2019.
+The extension is fully compatible with VS2015, VS2017, VS2019 and VS2022.
 
 License is MIT.
 
 This extension is strongly based to [SccAutoSwitcher](https://github.com/ceztko/SccAutoSwitcher) by *Francesco Pretto*, 
 which sadly seems to be no longer updated 
-and lack some important features such as VS2019 support and async loading support
+and lack some important features such as VS2019/VS2022 support and async loading support
 (which led me to create this project).
 
 ## Useful References

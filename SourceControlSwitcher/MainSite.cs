@@ -127,6 +127,11 @@ namespace SourceControlSwitcher
                         enabled = RegisterPerforceScc(out packageGuid, out sccProviderGuid, out providerToLoad);
                         break;
                     }
+                case RcsType.SourceGearVault:
+                    {
+                        enabled = RegisterSourceGearVaultScc(out packageGuid, out sccProviderGuid, out providerToLoad);
+                        break;
+                    }
             }
 
             AppHelper.Output(String.Format("Provider to Load: {0}, Enabled: {1}", providerToLoad.ToString(), enabled));
@@ -297,6 +302,45 @@ namespace SourceControlSwitcher
                     provider = SccProvider.P4VS;
                     return true;
                 case PerforceSccProvider.Default:
+                default:
+                    throw new Exception();
+            }
+        }
+
+        /// <returns>false if handling the scc provider is disabled for this Rcs type</returns>
+        private static bool RegisterSourceGearVaultScc(out Guid packageGuid, out Guid sccProviderGuid, out SccProvider provider)
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            SourceGearVaultSccProvider sourceGearVaultProvider = GetSourceGearVaultSccProvider();
+
+            if (sourceGearVaultProvider == SourceGearVaultSccProvider.Default)
+                sourceGearVaultProvider = GetDefaultSourceGearVaultSccProvider();
+
+            if (sourceGearVaultProvider == SourceGearVaultSccProvider.Disabled)
+            {
+                packageGuid = new Guid();
+                sccProviderGuid = new Guid();
+                provider = SccProvider.Unknown;
+                return false;
+            }
+
+            switch (sourceGearVaultProvider)
+            {
+                case SourceGearVaultSccProvider.SourceGearVaultStandard:
+                    {
+                        packageGuid = GetSccInstalledPackageId(SourceGearVaultStandardPackageIds);
+                        sccProviderGuid = new Guid(SourceGearVaultSccProviderId);
+                        provider = SccProvider.SourceGearVaultStandard;
+                        return true;
+                    }
+                case SourceGearVaultSccProvider.SourceGearVaultProfessional:
+                    {
+                        packageGuid = GetSccInstalledPackageId(SourceGearVaultProfessionalPackageIds);
+                        sccProviderGuid = new Guid(SourceGearVaultSccProviderId);
+                        provider = SccProvider.SourceGearVaultProfessional;
+                        return true;
+                    }
                 default:
                     throw new Exception();
             }

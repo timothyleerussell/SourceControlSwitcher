@@ -40,12 +40,17 @@ namespace SourceControlSwitcher
         public static readonly string[] P4VSPackageIds = { "8d316614-311a-48f4-85f7-df7020f62357" };
         public const string P4VSProviderId = "fda934f4-0492-4f67-a6eb-cbe0953649f0";
 
+        public static readonly string[] SourceGearVaultStandardPackageIds = { "03796505-8d85-4d99-8be3-860a7b046406" };
+        public static readonly string[] SourceGearVaultProfessionalPackageIds = { "35a170e4-5ad5-4a8f-8b25-14832fea4b07" };
+        public const string SourceGearVaultSccProviderId = "f258d985-9463-41d3-ac34-531fe5f6e996";
+
         public const string SourceControlSwitcherCollection = "SourceControlSwitcher";
 
         public const string SubversionProviderProperty = "SubversionProvider";
         public const string GitProviderProperty = "GitProvider";
         public const string MercurialProviderProperty = "MercurialProvider";
         public const string PerforceProviderProperty = "PerforceProvider";
+        public const string SourceGearVaultProviderProperty = "SourceGearVaultProvider";
 
         private static SccProvider GetCurrentSccProvider()
         {
@@ -74,6 +79,8 @@ namespace SourceControlSwitcher
                         : SccProvider.VisualHG;
                 case P4VSProviderId:
                     return SccProvider.P4VS;
+                case SourceGearVaultSccProviderId:
+                    return SccProvider.SourceGearVault;
                 default:
                     return SccProvider.Unknown;
             }
@@ -105,7 +112,12 @@ namespace SourceControlSwitcher
             Enum.TryParse(str, out result);
             return result;
         }
-
+        private static SourceGearVaultSccProvider GetSourceGearVaultSccProvider(string str)
+        {
+            var result = SourceGearVaultSccProvider.Default;
+            Enum.TryParse(str, out result);
+            return result;
+        }
         private static RcsType GetRcsTypeFromSccProvider(SccProvider provider)
         {
             switch (provider)
@@ -121,6 +133,9 @@ namespace SourceControlSwitcher
                 case SccProvider.HgSccPackage:
                 case SccProvider.VSHG:
                     return RcsType.Mercurial;
+                case SccProvider.SourceGearVaultStandard:
+                case SccProvider.SourceGearVaultProfessional:
+                    return RcsType.SourceGearVault;
                 default:
                     return RcsType.Unknown;
             }
@@ -190,6 +205,22 @@ namespace SourceControlSwitcher
                 RegisterPrimarySourceControlProvider(RcsType.Perforce);
         }
 
+        public static void SetSourceGearVaultSccProvider(SourceGearVaultSccProvider provider)
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+            _SettingsStore.CreateCollection(SourceControlSwitcherCollection);
+            if (provider == SourceGearVaultSccProvider.Default)
+                _SettingsStore.DeleteProperty(SourceControlSwitcherCollection, SourceGearVaultProviderProperty);
+            else
+                _SettingsStore.SetString(SourceControlSwitcherCollection, SourceGearVaultProviderProperty, provider.ToString());
+
+            if (provider == SourceGearVaultSccProvider.Disabled)
+                return;
+
+            if (_CurrentSolutionRcsType == RcsType.SourceGearVault)
+                RegisterPrimarySourceControlProvider(RcsType.SourceGearVault);
+        }
+
         public static SubversionSccProvider GetSubversionSccProvider()
         {
             string providerStr = _SettingsStore.GetString(SourceControlSwitcherCollection, SubversionProviderProperty, null);
@@ -206,6 +237,12 @@ namespace SourceControlSwitcher
         {
             string providerStr = _SettingsStore.GetString(SourceControlSwitcherCollection, GitProviderProperty, null);
             return GetGitSccProvider(providerStr);
+        }
+
+        public static SourceGearVaultSccProvider GetSourceGearVaultSccProvider()
+        {
+            string providerStr = _SettingsStore.GetString(SourceControlSwitcherCollection, SourceGearVaultProviderProperty, null);
+            return GetSourceGearVaultSccProvider(providerStr);
         }
 
         public static GitSccProvider GetDefaultGitSccProvider()
@@ -258,6 +295,19 @@ namespace SourceControlSwitcher
                 return PerforceSccProvider.P4VS;
 
             return PerforceSccProvider.Disabled;
+        }
+
+        public static SourceGearVaultSccProvider GetDefaultSourceGearVaultSccProvider()
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            if (IsSccPackageInstalled(SourceGearVaultStandardPackageIds))
+                return SourceGearVaultSccProvider.SourceGearVaultStandard;
+
+            if (IsSccPackageInstalled(SourceGearVaultProfessionalPackageIds))
+                return SourceGearVaultSccProvider.SourceGearVaultProfessional;
+
+            return SourceGearVaultSccProvider.Disabled;
         }
 
         public static bool IsSccPackageInstalled(string packageId)
@@ -378,7 +428,22 @@ namespace SourceControlSwitcher
         [Description("P4VS")]
         [Display(Name = "P4VS")]
         [LocDisplayName("P4VS")]
-        P4VS
+        P4VS,
+
+        [Description("SourceGearVault")]
+        [Display(Name = "SourceGear Vault")]
+        [LocDisplayName("SourceGear Vault")]
+        SourceGearVault,
+
+        [Description("SourceGear Vault Standard")]
+        [Display(Name = "SourceGear Vault Standard")]
+        [LocDisplayName("SourceGear Vault Standard")]
+        SourceGearVaultStandard,
+
+        [Description("SourceGear Vault Professional")]
+        [Display(Name = "SourceGear Vault Professional")]
+        [LocDisplayName("SourceGear Vault Professional")]
+        SourceGearVaultProfessional
     }
 
     public enum RcsType
@@ -387,6 +452,7 @@ namespace SourceControlSwitcher
         Subversion,
         Git,
         Mercurial,
-        Perforce
+        Perforce,
+        SourceGearVault
     }
 }

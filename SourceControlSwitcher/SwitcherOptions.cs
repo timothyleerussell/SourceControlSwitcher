@@ -58,6 +58,19 @@ namespace SourceControlSwitcher
                 MainSite.SetPerforceSccProvider(value); 
             }
         }
+
+        [DisplayName("SourceGear Vault Provider")]
+        [Description("Select the SourceGear Vault Provider to use.")]
+        [Category("Source Control Providers")]
+        public SourceGearVaultSccProvider SourceGearVaultProvider
+        {
+            get { return MainSite.GetSourceGearVaultSccProvider(); }
+            set
+            {
+                ThreadHelper.ThrowIfNotOnUIThread();
+                MainSite.SetSourceGearVaultSccProvider(value);
+            }
+        }
     }
 
     [Serializable]
@@ -125,6 +138,23 @@ namespace SourceControlSwitcher
         [Display(Name = "P4VS")]
         [LocDisplayName("P4VS")]
         P4VS,
+
+        Disabled
+    }
+
+    public enum SourceGearVaultSccProvider
+    {
+        Default = 0,
+
+        [Description("SourceGear Vault Standard")]
+        [Display(Name = "SourceGear Vault Standard")]
+        [LocDisplayName("SourceGear Vault Standard")]
+        SourceGearVaultStandard,
+
+        [Description("SourceGear Vault Professional")]
+        [Display(Name = "SourceGear Vault Professional")]
+        [LocDisplayName("SourceGear Vault Professional")]
+        SourceGearVaultProfessional,
 
         Disabled
     }
