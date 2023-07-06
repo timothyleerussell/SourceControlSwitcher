@@ -29,7 +29,7 @@ namespace SourceControlSwitcher
             ThreadHelper.ThrowIfNotOnUIThread();
 
             if (AppHelper.Debug) msg = String.Format("[{0}] {1}" + Environment.NewLine, "DEBUG", msg);
-            if (appendTS) msg = String.Format("[{0}] {1}", DateTime.Now.ToString("HH:mm:ss"), msg);
+            if (appendTS) msg = String.Format("[{0}] {1}" + Environment.NewLine, DateTime.Now.ToString("HH:mm:ss"), msg);
 
             // ADD TO Error List pane
             TaskManager.AddWarning(msg);
