@@ -152,9 +152,9 @@ namespace SourceControlSwitcher
             if (!installed)
                 return;
 
-            
-            
-            
+
+
+
             //TODO: this line fails, probably because the "Id" is incorrect
             //should be an id from the sourcegear vault extension but are 
             //currently just randomly generated placeholder guids

@@ -43,6 +43,13 @@ namespace SourceControlSwitcher
 
         //these are placeholder ids at the moment - not sure where to find these package ids
         //some way of interrogating the vsix installer?
+        //yes, can unzip the extension installer and read the manifest file
+
+        //try the Vault Pro guids first - since Vault Pro is what I have installed
+        //interesting that SourceGear has a prefix though - not in the MS docs that I can see
+        //try just the guid bit as the SourceGearVaultSccProviderId
+        //VaultWitVsip.0da1b151-b5a1-4c82-b97d-bef83adf8958
+        //doesn't work, try using this guid as the package id
 
         //Vault Standard manifest has these two guids
         //Identity Id = "VaultSccVsip.bd27fdf0-45c3-4c8d-8fa5-aaf84600543c" Version="10.2.0.1222" Language="en-US" Publisher="SourceGear, LLC"
@@ -52,12 +59,16 @@ namespace SourceControlSwitcher
         //Identity Id="VaultWitVsip.0da1b151-b5a1-4c82-b97d-bef83adf8958" Version="10.2.0.31222" Language="en-US" Publisher="SourceGear, LLC" 
         //Dependency Version="[4.3.2.1,)" Location="VaultSccVsix\VaultSccVsip.vsix" DisplayName="SourceGear Vault Professional Extension" Id="VaultSccVsip.1cbcff05-f0cd-4b07-ab12-1d986e26c8cf"
 
-        public static readonly string[] SourceGearVaultStandardPackageIds = { "03796505-8d85-4d99-8be3-860a7b046406" };
-        //public static readonly string[] SourceGearVaultProfessionalPackageIds = { "35a170e4-5ad5-4a8f-8b25-14832fea4b07" };
-        public static readonly string[] SourceGearVaultProfessionalPackageIds = { "1cbcff05-f0cd-4b07-ab12-1d986e26c8cf" };
-        
-        //Is this an internal guid for the Source Control Switcher...?
-        public const string SourceGearVaultSccProviderId = "f258d985-9463-41d3-ac34-531fe5f6e996";
+        //public static readonly string[] SourceGearVaultStandardPackageIds = { "03796505-8d85-4d99-8be3-860a7b046406" }; //made up guid
+        public static readonly string[] SourceGearVaultStandardPackageIds = { "bd27fdf0-45c3-4c8d-8fa5-aaf84600543c" }; //SGStd VaultSccVsip
+        //public static readonly string[] SourceGearVaultProfessionalPackageIds = { "1cbcff05-f0cd-4b07-ab12-1d986e26c8cf" }; //made up guid
+        //public static readonly string[] SourceGearVaultProfessionalPackageIds = { "0da1b151-b5a1-4c82-b97d-bef83adf8958" }; //SGPro VaultWitVsip
+        public static readonly string[] SourceGearVaultProfessionalPackageIds = { "1cbcff05-f0cd-4b07-ab12-1d986e26c8cf" }; //SGPro VaultSccVsip
+
+        //TODO: Is this an internal guid for the Source Control Switcher...?
+        //Seems like it must a guid that comes from the SourceGear Vault extension
+        public const string SourceGearVaultSccProviderId = "f258d985-9463-41d3-ac34-531fe5f6e996"; //made up guid
+        //public const string SourceGearVaultSccProviderId = "0da1b151-b5a1-4c82-b97d-bef83adf8958"; //SGPro VaultWitVsip
 
         public const string SourceControlSwitcherCollection = "SourceControlSwitcher";
 
