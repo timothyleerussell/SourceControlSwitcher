@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29230.47
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{D6B6BD71-E790-4DA2-93EE-AEFBC77A9FA1}"
 	ProjectSection(SolutionItems) = preProject
@@ -10,6 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{D6B6BD71-E
 		INSTALL.txt = INSTALL.txt
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md
+		..\..\..\Desktop\SourceGear Vault dialog pop - Screenshot 2023-07-06 005046.png = ..\..\..\Desktop\SourceGear Vault dialog pop - Screenshot 2023-07-06 005046.png
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SourceControlSwitcher", "SourceControlSwitcher\SourceControlSwitcher.csproj", "{7C197171-9B9D-4958-BCD0-4851C7E48F5C}"
