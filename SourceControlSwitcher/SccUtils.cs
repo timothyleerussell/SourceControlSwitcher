@@ -40,6 +40,8 @@ namespace SourceControlSwitcher
         public static readonly string[] P4VSPackageIds = { "8d316614-311a-48f4-85f7-df7020f62357" };
         public const string P4VSProviderId = "fda934f4-0492-4f67-a6eb-cbe0953649f0";
 
+        //these are placeholder ids at the moment - not sure where to find these package ids
+        //some way of interrogating the vsix installer?
         public static readonly string[] SourceGearVaultStandardPackageIds = { "03796505-8d85-4d99-8be3-860a7b046406" };
         public static readonly string[] SourceGearVaultProfessionalPackageIds = { "35a170e4-5ad5-4a8f-8b25-14832fea4b07" };
         public const string SourceGearVaultSccProviderId = "f258d985-9463-41d3-ac34-531fe5f6e996";
