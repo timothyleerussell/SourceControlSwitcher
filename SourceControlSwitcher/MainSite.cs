@@ -153,15 +153,11 @@ namespace SourceControlSwitcher
                 return;
 
 
-
-
             //TODO: this line fails, probably because the "Id" is incorrect
             //should be an id from the sourcegear vault extension but are 
             //currently just randomly generated placeholder guids
             hr = _VsRegisterScciProvider.RegisterSourceControlProvider(sccProviderGuid);
             Marshal.ThrowExceptionForHR(hr);
-
-
 
 
             AppHelper.Output(String.Format("Provider {0} registered (providerGuid: {1})", providerToLoad.ToString(), sccProviderGuid.ToString()));
