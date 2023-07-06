@@ -171,6 +171,13 @@ namespace SourceControlSwitcher
             //TODO: Research what the reprecussions of Marshal.ThrowEx are...
             //Marshal.ThrowExceptionForHR(hr);
 
+            //Throws an error message box when switching to SourceGear Vault but also seems
+            //to end up working if you just agree to it a couple of time
+
+            //Error message text:
+            //
+            //
+            //
 
             AppHelper.Output(String.Format("Provider {0} registered (providerGuid: {1})", providerToLoad.ToString(), sccProviderGuid.ToString()));
         }
