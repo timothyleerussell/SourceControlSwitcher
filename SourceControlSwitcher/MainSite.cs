@@ -31,6 +31,8 @@ namespace SourceControlSwitcher
 
         private SolutionEvents solutionEvents;
 
+        //query the IVs Scci Provider to find out what the SourceGear Vault Professional installed guid is, how...?
+
         private static IVsRegisterScciProvider _VsRegisterScciProvider;
         private static IVsGetScciProviderInterface _VsGetScciProviderInterface;
         private static IVsShell _VsShell;
@@ -159,7 +161,8 @@ namespace SourceControlSwitcher
             // How do we interrogate the current extension guids? 
     z       // Could set the current provider manually and try to extract the registration guid that way?
             //
-            
+
+
             hr = _VsRegisterScciProvider.RegisterSourceControlProvider(sccProviderGuid);
             Marshal.ThrowExceptionForHR(hr);
 
