@@ -159,7 +159,7 @@ namespace SourceControlSwitcher
             //should be an id from the sourcegear vault extension?
             //
             // How do we interrogate the current extension guids? 
-    z       // Could set the current provider manually and try to extract the registration guid that way?
+            // Could set the current provider manually and try to extract the registration guid that way?
             //
 
 

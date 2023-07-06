@@ -53,9 +53,12 @@ namespace SourceControlSwitcher
         //  Also, MS docs say this is a guid but the Vault extension the Id value is SOMETHING.guid
         //  Maybe when you install an extension, this first bit gets stripped off. Don't know yet.
         //
-        //these are placeholder ids at the moment - not sure where to find these package ids
-        //some way of interrogating the vsix installer?
-        //yes, can unzip the extension installer and read the manifest file
+        //  Can unzip the extension installer and read the manifest file of the SourceGear Vault extensions
+        //  Those values are below
+        //
+        //  Could it be that the entire Id string is used "VaultWitVsip.0da1b151-b5a1-4c82-b97d-bef83adf8958"
+        //  That is not in line with SourceControlSwitcher's method of assuming this Id is a guid
+        //  But this comes back to how to interrogate VS for the extension Id?
 
         //try the Vault Pro guids first - since Vault Pro is what I have installed
         //interesting that SourceGear has a prefix though - not in the MS docs that I can see
