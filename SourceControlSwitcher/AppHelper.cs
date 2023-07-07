@@ -26,6 +26,7 @@ namespace SourceControlSwitcher
         public static void Output(string msg, bool appendTS = true, bool debugOnly = true)
         {
             if (debugOnly && !AppHelper.Debug) return;
+
             ThreadHelper.ThrowIfNotOnUIThread();
 
             if (AppHelper.Debug) msg = String.Format("[{0}] {1}" + Environment.NewLine, "DEBUG", msg);
@@ -46,7 +47,8 @@ namespace SourceControlSwitcher
                 outWindow.GetPane(ref customGuid, out customPane);
             }
             customPane.Activate(); // Brings this pane into view
-            customPane.OutputString(msg);
+            //customPane.OutputString(msg);
+            customPane.OutputStringThreadSafe(msg);
         }
     }
 }
